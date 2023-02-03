@@ -1,0 +1,42 @@
+<form [formGroup]="formularioLogin" (ngSubmit)="login()">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email</label>
+        <input formControlName="correo" type="email" class="form-control" id="exampleInputEmail1"
+            aria-describedby="emailHelp">
+        <div class="valido"
+            *ngIf="formularioLogin.controls['correo'].dirty && formularioLogin.controls['correo'].valid">
+            Email correcto
+        </div>
+        <div class="invalido"
+            *ngIf="formularioLogin.controls['correo'].dirty && formularioLogin.controls['correo'].errors?.['required']">
+            El email no puede estar vacío
+        </div>
+        <div class="invalido"
+            *ngIf="formularioLogin.controls['correo'].dirty && formularioLogin.controls['correo'].errors?.['pattern']">
+            El email tiene un formato incorrecto
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+        <input formControlName="contrasenia" type="password" class="form-control" id="exampleInputPassword1">
+        <div class="valido"
+            *ngIf="formularioLogin.controls['contrasenia'].dirty && formularioLogin.controls['contrasenia'].valid">
+            Contraseña correcta
+        </div>
+        <div class="invalido"
+            *ngIf="formularioLogin.controls['contrasenia'].dirty && formularioLogin.controls['contrasenia'].errors?.['required']">
+            La contraseña no puede estar vacía
+        </div>
+        <div class="invalido"
+            *ngIf="formularioLogin.controls['contrasenia'].dirty && formularioLogin.controls['contrasenia'].errors?.['minlength']">
+            La contraseña debe tener 7 caracteres como mínimo
+        </div>
+    </div>
+    <div class="mb-3 form-check">
+        <label class="form-check-label" for="exampleCheck1">Recordar Credenciales</label>
+        <input formControlName="recordarCredenciales" type="checkbox" class="form-check-input" id="exampleCheck1">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="formularioLogin.invalid">Enviar</button>
+    <button type="reset" class="btn btn-primary">Reiniciar</button>
+
+</form>
